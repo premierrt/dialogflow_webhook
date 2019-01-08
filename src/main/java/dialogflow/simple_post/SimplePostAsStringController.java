@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class SimplePostAsStringController {
 
-	@PostMapping
+	@PostMapping("/webhook")
 	public ResponseEntity<?> processDialogFlowPost(@RequestBody String json){
 	
 		log.info("--------- "+json );

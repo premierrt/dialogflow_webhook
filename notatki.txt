@@ -5,3 +5,7 @@ https://medium.com/@felippepuhle/getting-started-with-spring-boot-travis-and-her
 
 --travis.ci i heroku
 https://jojozhuang.github.io/tutorial/restful/continuously-deploy-spring-boot-app-to-heroku-with-travis-ci/
+
+
+---zrobic ten serwis jako gateway
+---a oblusge konkretnych intentów i zapis do bazy dnaych gdzie indziej

@@ -9,3 +9,54 @@ https://jojozhuang.github.io/tutorial/restful/continuously-deploy-spring-boot-ap
 
 ---zrobic ten serwis jako gateway
 ---a oblusge konkretnych intentów i zapis do bazy dnaych gdzie indziej
+
+
+
+
+
+----java to do:
+--java map - w java 8 
+
+--obsluga bledow - teraz jest w klasie serwisu. spr. jak jest w chbot?
+Map queryResult;
+		try {
+			queryResult = (Map)jsonObject.get("queryResult");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+
+----hamcrest - zeby sie importowal sam 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.equalTo;
+
+
+{
+  "responseId": "22462410-f4e3-477d-b3bd-c7064beabda6",
+  "queryResult": {
+    "queryText": "a lot of",
+    "parameters": {
+      "amount": "a lot of",
+      "toilet_activity": "pee"
+    },
+    "allRequiredParamsPresent": true,
+    "fulfillmentText": "Done! Saved your toilet raport. pee amount a lot of",
+    "fulfillmentMessages": [{
+      "text": {
+        "text": ["Done! Saved your toilet raport. pee amount a lot of"]
+      }
+    }],
+    "intent": {
+      "name": "projects/jokes-df111/agent/intents/19455d90-8a5b-40cb-8403-69ee0c1e143c",
+      "displayName": "toiletReports"
+    },
+    "intentDetectionConfidence": 1.0,
+    "languageCode": "en"
+  },
+  "originalDetectIntentRequest": {
+  },
+  "session": "projects/jokes-df111/agent/sessions/2f07e702-cfb9-457e-1e57-5f2dd54037c2"
+}

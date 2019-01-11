@@ -17,6 +17,7 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 	/**
 	 * https://www.testingexcellence.com/how-to-parse-json-in-java/
 	 * do refaktory - obsluga bledow i zeby nie zwracal null-a. czy deklaracja objektow w metodzie na gorze?
+	 * https://www.toptal.com/java/spring-boot-rest-api-error-handling
 	 */
 	public FullfillmentResponseDTO processIntent(JSONObject jsonObject) {
 	

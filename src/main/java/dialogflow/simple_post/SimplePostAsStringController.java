@@ -29,6 +29,7 @@ public class SimplePostAsStringController {
 	 */
 	public ResponseEntity<?> processDialogFlowPost(@RequestBody String json){
 	//!!!poprawic obsluge bledow
+		//https://www.toptal.com/java/spring-boot-rest-api-error-handling
 		FullfillmentResponseDTO fullfillmentResponseDTO= new FullfillmentResponseDTO();
 		log.info("--------- "+json );
 		try {

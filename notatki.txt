@@ -15,6 +15,7 @@ https://jojozhuang.github.io/tutorial/restful/continuously-deploy-spring-boot-ap
 
 
 ----java to do:
+--obsluga bledow w boot -> https://www.toptal.com/java/spring-boot-rest-api-error-handling
 --java map - w java 8 
 
 --obsluga bledow - teraz jest w klasie serwisu. spr. jak jest w chbot?

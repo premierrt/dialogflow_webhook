@@ -27,18 +27,20 @@ public class SimplePostAsStringController {
 	 * @param json
 	 * @return
 	 */
-	public ResponseEntity<?> processDialogFlowPost(@RequestBody String json){
+	public ResponseEntity<?> processDialogFlowPost(@RequestBody String json) throws IntentProcessingException{
 	//!!!poprawic obsluge bledow
 		//https://www.toptal.com/java/spring-boot-rest-api-error-handling
 		FullfillmentResponseDTO fullfillmentResponseDTO= new FullfillmentResponseDTO();
 		log.info("--------- "+json );
-		try {
-			JSONObject jsonObject = new JSONObject(json.toString());
-			fullfillmentResponseDTO =intentServiceProcessor.processIntent(jsonObject);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			JSONObject jsonObject;
+			try {
+				jsonObject = new JSONObject(json.toString());
+				fullfillmentResponseDTO =intentServiceProcessor.processIntent(jsonObject);
+
+			} catch (JSONException | IntentProcessingException e) {
+					throw new IntentProcessingException("", e);
+			}
+		
 		return ResponseEntity.status(HttpStatus.OK).body(fullfillmentResponseDTO);
 		
 	}

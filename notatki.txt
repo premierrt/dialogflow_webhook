@@ -13,9 +13,20 @@ https://jojozhuang.github.io/tutorial/restful/continuously-deploy-spring-boot-ap
 
 
 
+---
+to do - zapis do bazy danych osobny modul?
+https://spring.io/guides/gs/multi-module/
+https://www.baeldung.com/maven-multi-module
+
+--VALIDACJE z test controllera 
+================ 
+https://mydevgeek.com/spring-boot-rest-web-service-part-3-exception-handling-validation-using-controlleradvice-valid-custom-annotations/
+
 
 ----java to do:
---obsluga bledow w boot -> https://www.toptal.com/java/spring-boot-rest-api-error-handling
+--obsluga bledow w boot -> 
+	https://www.toptal.com/java/spring-boot-rest-api-error-handling
+	http://appsdeveloperblog.com/handle-exceptions-spring-boot/
 --java map - w java 8 
 
 --obsluga bledow - teraz jest w klasie serwisu. spr. jak jest w chbot?

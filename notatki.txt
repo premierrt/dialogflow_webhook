@@ -18,6 +18,18 @@ to do - zapis do bazy danych osobny modul?
 https://spring.io/guides/gs/multi-module/
 https://www.baeldung.com/maven-multi-module
 
+spring boot:
+-uzywanie @bean
+	//https://stackoverflow.com/questions/34172888/difference-between-bean-and-autowired
+--load on startup
+https://stackoverflow.com/questions/27940704/how-to-load-cache-on-startup-in-spring
+
+--stategy:
+https://stackoverflow.com/questions/17629761/strategy-pattern-with-spring-beans
+
+
+
+
 --VALIDACJE z test controllera 
 ================ 
 https://mydevgeek.com/spring-boot-rest-web-service-part-3-exception-handling-validation-using-controlleradvice-valid-custom-annotations/

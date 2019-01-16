@@ -1,13 +1,11 @@
 package dialogflow.simple_post;
 
-import java.util.Map;
+import java.util.HashMap;
 
-import org.apache.catalina.connector.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,6 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 
+	//test
+	@Autowired
+	HashMap<String,String> intentMapCache;
+	
+	
 	@Override
 	/**
 	 * https://www.testingexcellence.com/how-to-parse-json-in-java/
@@ -26,6 +29,10 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 	
 		FullfillmentResponseDTO respone= new FullfillmentResponseDTO();
 		log.info(IntentServiceProcessorImpl.class + " ===================== "+jsonObject.toString() );
+		
+		//test
+		log.info("###################3========================" + intentMapCache.get("intent1"));
+		
 		try {
 			JSONObject queryResult = jsonObject.getJSONObject("queryResult");
 			

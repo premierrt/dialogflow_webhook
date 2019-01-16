@@ -2,13 +2,19 @@ package dialogflow;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.equalTo;import org.json.JSONObject;
+
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import dialogflow.simple_post.IntentProcessingException;
 import dialogflow.simple_post.IntentServiceProcessorImpl;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class IntentServiceTest {
 
 	private IntentServiceProcessorImpl intentServiceProcessorImpl;
@@ -78,6 +84,14 @@ public class IntentServiceTest {
 	}
 	
 
-
+	@Test
+	public void test() {
+		try {
+			assertThat(intentServiceProcessorImpl.processIntent(json).getFulfillmentText(), is(responseText));
+		} catch (IntentProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }

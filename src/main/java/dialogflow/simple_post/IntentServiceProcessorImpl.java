@@ -2,6 +2,8 @@ package dialogflow.simple_post;
 
 import java.util.HashMap;
 
+import javax.annotation.Resource;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 
 	//test
-	@Autowired
+	@Resource
 	HashMap<String,String> intentMapCache;
 	
 	
@@ -31,6 +33,8 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		log.info(IntentServiceProcessorImpl.class + " ===================== "+jsonObject.toString() );
 		
 		//test
+		log.info("###################3========================" + intentMapCache.toString());
+
 		log.info("###################3========================" + intentMapCache.get("intent1"));
 		
 		try {

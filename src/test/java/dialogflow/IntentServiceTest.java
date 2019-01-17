@@ -76,7 +76,8 @@ public class IntentServiceTest {
 	private String responseText = "Done! Saved your toilet raport. pee amount a lot of przerobiony w backendzie";
 	private JSONObject json ;
 	private JSONObject jsonNotOK;
-	
+
+	/*
 	@Before
 	public void setUp() throws Exception {
 		intentServiceProcessorImpl = new IntentServiceProcessorImpl();
@@ -93,5 +94,6 @@ public class IntentServiceTest {
 			e.printStackTrace();
 		}
 	}
+	*/
 	
 }

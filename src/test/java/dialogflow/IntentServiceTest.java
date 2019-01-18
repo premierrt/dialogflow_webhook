@@ -13,8 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import dialogflow.simple_post.IntentProcessingException;
 import dialogflow.simple_post.IntentServiceProcessorImpl;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+
 public class IntentServiceTest {
 
 	private IntentServiceProcessorImpl intentServiceProcessorImpl;

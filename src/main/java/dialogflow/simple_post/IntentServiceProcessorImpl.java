@@ -9,17 +9,25 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dialogflow.intentprocessing.IntenetProcessor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 
-	//test
-	@Resource
-	HashMap<String,String> intentMapCache;
+	//do klasy abstrakcyjnej??
+	private HashMap<String,IntenetProcessor> intentMapCache;
 	
-	
+
+	@Autowired
+	public IntentServiceProcessorImpl(HashMap<String, IntenetProcessor> intentMapCache) {
+		super();
+		this.intentMapCache = intentMapCache;
+	}
+
+
+
 	@Override
 	/**
 	 * https://www.testingexcellence.com/how-to-parse-json-in-java/
@@ -47,6 +55,19 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		}
 		
 		return respone;
+	}
+	
+
+	//do klasy abstrakcyjnej??
+	private String getIntentFromJson(JSONObject jsonObject){
+		//TO_DO
+		return null;
+	}
+	
+	//do klasy abstrakcyjnej??
+	private IntenetProcessor getIntentProcessor(String intentName) throws IntentProcessingException{
+		return intentMapCache.entrySet().stream().filter(mapEntry -> intentName.equals(mapEntry.getKey())).findFirst().map(entry -> entry.getValue()).orElseThrow(() -> new IntentProcessingException("nie ma takiego intentu")); 
+		
 	}
 
 }

@@ -1,22 +1,25 @@
 package dialogflow;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+
+import java.util.HashMap;
 
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
+import dialogflow.intentprocessing.IntenetProcessor;
 import dialogflow.simple_post.IntentProcessingException;
 import dialogflow.simple_post.IntentServiceProcessorImpl;
 
-
+@RunWith(MockitoJUnitRunner.class)
 public class IntentServiceTest {
 
-	private IntentServiceProcessorImpl intentServiceProcessorImpl;
 	private static final String jsonString= "{\n" + 
 			"  \"responseId\": \"22462410-f4e3-477d-b3bd-c7064beabda6\",\n" + 
 			"  \"queryResult\": {\n" + 
@@ -75,11 +78,18 @@ public class IntentServiceTest {
 	private String responseText = "Done! Saved your toilet raport. pee amount a lot of przerobiony w backendzie";
 	private JSONObject json ;
 	private JSONObject jsonNotOK;
+	
+	@Mock
+	private HashMap<String,IntenetProcessor> intentMapCacheMock;
+  
+	@InjectMocks
+	private IntentServiceProcessorImpl intentServiceProcessorImpl;
 
-	/*
+
+	
 	@Before
 	public void setUp() throws Exception {
-		intentServiceProcessorImpl = new IntentServiceProcessorImpl();
+		intentServiceProcessorImpl = new IntentServiceProcessorImpl(intentMapCacheMock);
 		 json = new JSONObject(jsonString.toString());
 	}
 	
@@ -93,6 +103,6 @@ public class IntentServiceTest {
 			e.printStackTrace();
 		}
 	}
-	*/
+	
 	
 }

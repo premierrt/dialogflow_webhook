@@ -75,9 +75,10 @@ public class IntentServiceTest {
 			"  \"session\": \"projects/jokes-df111/agent/sessions/2f07e702-cfb9-457e-1e57-5f2dd54037c2\"\n" + 
 			"}";
 	
-	private String responseText = "Done! Saved your toilet raport. pee amount a lot of przerobiony w backendzie";
+	private final static String responseText = "Done! Saved your toilet raport. pee amount a lot of przerobiony w backendzie";
 	private JSONObject json ;
 	private JSONObject jsonNotOK;
+	private final static String intentName="projects/jokes-df111/agent/intents/19455d90-8a5b-40cb-8403-69ee0c1e143c";
 	
 	@Mock
 	private HashMap<String,IntenetProcessor> intentMapCacheMock;
@@ -102,6 +103,11 @@ public class IntentServiceTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testGetIntentFromJson() {
+		assertThat(intentServiceProcessorImpl.getIntentFromJson(json) , is(intentName));
 	}
 	
 	

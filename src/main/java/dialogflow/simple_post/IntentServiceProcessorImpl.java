@@ -59,9 +59,13 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 	
 
 	//do klasy abstrakcyjnej??
-	private String getIntentFromJson(JSONObject jsonObject){
-		//TO_DO
-		return null;
+	//zmieniam na public, zeby junit widzial. private nie widzi:
+	//ew. przeniesc do klasy z helperem
+	public String getIntentFromJson(JSONObject jsonObject){
+		JSONObject intentJsonObject = jsonObject.getJSONObject("queryResult").getJSONObject("intent");
+		
+		return intentJsonObject.getString("name");
+		
 	}
 	
 	//do klasy abstrakcyjnej??

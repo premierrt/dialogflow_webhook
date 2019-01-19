@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.HashMap;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +13,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import static org.mockito.Mockito.*;
+
 
 import dialogflow.intentprocessing.IntenetProcessor;
+import dialogflow.intentprocessing.ToiletIntentProcessor;
 import dialogflow.simple_post.IntentProcessingException;
 import dialogflow.simple_post.IntentServiceProcessorImpl;
 
@@ -96,17 +100,16 @@ public class IntentServiceTest {
 	
 
 	@Test
-	public void test() {
-		try {
+	public void test() throws IntentProcessingException {
+		//mocikto
+		//http://www.vogella.com/tutorials/Mockito/article.html
+			when (intentMapCacheMock.get(anyString())).thenReturn(new ToiletIntentProcessor());	
 			assertThat(intentServiceProcessorImpl.processIntent(json).getFulfillmentText(), is(responseText));
-		} catch (IntentProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 	}
 	
 	@Test
-	public void testGetIntentFromJson() {
+	public void testGetIntentFromJson() throws JSONException {
 		assertThat(intentServiceProcessorImpl.getIntentFromJson(json) , is(intentName));
 	}
 	

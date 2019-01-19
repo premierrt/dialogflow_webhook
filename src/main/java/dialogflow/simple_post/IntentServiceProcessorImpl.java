@@ -36,32 +36,25 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 	 * https://www.toptal.com/java/spring-boot-rest-api-error-handling
 	 */
 	public FullfillmentResponseDTO processIntent(JSONObject jsonObject) throws IntentProcessingException {
-	
-		FullfillmentResponseDTO respone= new FullfillmentResponseDTO();
-		log.info(IntentServiceProcessorImpl.class + " ===================== "+jsonObject.toString() );
 		
-		//test
-		log.info("###################3========================" + intentMapCache.toString());
-
-		log.info("###################3========================" + intentMapCache.get("intent1"));
-		
+		String intent=new String();
 		try {
-			JSONObject queryResult = jsonObject.getJSONObject("queryResult");
-			
-			respone.setFulfillmentText( queryResult.getString("fulfillmentText").concat(" przerobiony w backendzie") );
-			
+			intent = getIntentFromJson(jsonObject);
 		} catch (JSONException e) {
 			throw new IntentProcessingException("Json się nie parsuje", e );
 		}
+		//zwraca intentProcesor na podstawie konfiguracji - przeniesc do redis
+		IntenetProcessor intenetProcessor= intentMapCache.get(intent);
+		return intenetProcessor.processIntent(jsonObject);
 		
-		return respone;
+		
 	}
 	
 
 	//do klasy abstrakcyjnej??
 	//zmieniam na public, zeby junit widzial. private nie widzi:
 	//ew. przeniesc do klasy z helperem
-	public String getIntentFromJson(JSONObject jsonObject){
+	public String getIntentFromJson(JSONObject jsonObject) throws JSONException{
 		JSONObject intentJsonObject = jsonObject.getJSONObject("queryResult").getJSONObject("intent");
 		
 		return intentJsonObject.getString("name");

@@ -1,6 +1,7 @@
 package dialogflow.simple_post;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -9,6 +10,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dialogflow.intentprocessing.FallbackIntentProcessor;
 import dialogflow.intentprocessing.IntenetProcessor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,8 +46,15 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 			throw new IntentProcessingException("Json się nie parsuje", e );
 		}
 		//zwraca intentProcesor na podstawie konfiguracji - przeniesc do redis
-		IntenetProcessor intenetProcessor= intentMapCache.get(intent);
-		return intenetProcessor.processIntent(jsonObject);
+		Optional<IntenetProcessor> intenetProcessor= Optional.ofNullable( intentMapCache.get(intent));
+		
+		//tu zwroci null pointera jesli nie bedzie obslugi jakiegos intenta
+		//optional
+		//https://x-team.com/blog/using-optional-to-transform-your-java-code/
+		
+		//intenetProcessor.orElseThrow(exceptionSupplier)
+		return 	(intenetProcessor.orElse(new FallbackIntentProcessor())).processIntent(jsonObject); //tutaj powinien byc ze spring bean. z contextu wczytany?
+
 		
 		
 	}
@@ -61,7 +70,10 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		
 	}
 	
-	//do klasy abstrakcyjnej??
+	
+	
+	
+	//do klasy abstrakcyjnej?? 
 	private IntenetProcessor getIntentProcessor(String intentName) throws IntentProcessingException{
 		return intentMapCache.entrySet().stream().filter(mapEntry -> intentName.equals(mapEntry.getKey())).findFirst().map(entry -> entry.getValue()).orElseThrow(() -> new IntentProcessingException("nie ma takiego intentu")); 
 		

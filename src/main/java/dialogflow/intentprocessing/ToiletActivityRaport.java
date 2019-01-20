@@ -26,7 +26,7 @@ public class ToiletActivityRaport implements IntenetProcessor {
 		
 		try {
 			JSONObject queryResult = jsonObject.getJSONObject("queryResult");
-			if ("true".equals(queryResult.getString("allRequiredParamsPresent"))){
+			if (queryResult.getBoolean("allRequiredParamsPresent")){
 				JSONObject params =queryResult.getJSONObject("parameters");
 				amount= params.getString("amount");
 				toiletActivity=params.getString("toilet_activity");

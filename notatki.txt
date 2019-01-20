@@ -1,3 +1,8 @@
+to_do:
+--intentprocesor wyciagajacy paremetry 
+--odczyt z redis imlementacji intent procesora
+--zapis do redis z jakiegos backoffice do konfiguracji intentow
+
 
 
 --travis.ci
@@ -83,4 +88,90 @@ import static org.hamcrest.Matchers.equalTo;
   "originalDetectIntentRequest": {
   },
   "session": "projects/jokes-df111/agent/sessions/2f07e702-cfb9-457e-1e57-5f2dd54037c2"
+}
+
+
+
+{
+
+  "responseId": "870978e8-1f92-4913-ad45-e814b9180c25",
+
+  "queryResult": {
+
+    "queryText": "5 days",
+
+    "parameters": {
+
+      "duration": {
+
+        "amount": 5,
+
+        "unit": "day"
+
+      }
+
+    },
+
+    "allRequiredParamsPresent": true,
+
+    "fulfillmentText": "Since 5 day you : 1 poo, 2 piss < Tu będzie odpowiedz z backendu. >",
+
+    "fulfillmentMessages": [
+
+      {
+
+        "text": {
+
+          "text": [
+
+            "Since 5 day you : 1 poo, 2 piss < Tu będzie odpowiedz z backendu. >"
+
+          ]
+
+        }
+
+      }
+
+    ],
+
+    "outputContexts": [
+
+      {
+
+        "name": "projects/pysior/agent/sessions/86f41e6e-c695-2e57-1fc8-0eb9343608cc/contexts/check_history_context",
+
+        "lifespanCount": 5,
+
+        "parameters": {
+
+          "duration": {
+
+            "amount": 5,
+
+            "unit": "day"
+
+          },
+
+          "duration.original": "5 days"
+
+        }
+
+      }
+
+    ],
+
+    "intent": {
+
+      "name": "projects/pysior/agent/intents/1890557d-b69b-40e6-bd21-f32982175c55",
+
+      "displayName": "check_history"
+
+    },
+
+    "intentDetectionConfidence": 1,
+
+    "languageCode": "en"
+
+  }
+
 }

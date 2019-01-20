@@ -83,6 +83,8 @@ public class IntentServiceTest {
 	private JSONObject json ;
 	private JSONObject jsonNotOK;
 	private final static String intentName="projects/jokes-df111/agent/intents/19455d90-8a5b-40cb-8403-69ee0c1e143c";
+	private final static String intentFallbackText="Fallback z backendu - nie ma takiego intentu!";
+	
 	
 	@Mock
 	private HashMap<String,IntenetProcessor> intentMapCacheMock;
@@ -113,5 +115,10 @@ public class IntentServiceTest {
 		assertThat(intentServiceProcessorImpl.getIntentFromJson(json) , is(intentName));
 	}
 	
+	@Test
+	public void testNoIntent() throws IntentProcessingException{
+		assertThat(intentServiceProcessorImpl.processIntent(json).getFulfillmentText(), is(intentFallbackText));
+
+	}
 	
 }

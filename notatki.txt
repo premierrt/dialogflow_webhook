@@ -175,3 +175,114 @@ import static org.hamcrest.Matchers.equalTo;
   }
 
 }
+
+==========
+
+req/resp
+{
+"responseId": "8ea8fb2f-cd43-41a9-9df6-cbd3612ad1df",
+"queryResult": {
+  "queryText": "a lot of",
+  "parameters": {
+    "amount": "big",
+    "toilet_activity": "piss"
+  },
+  "allRequiredParamsPresent": true,
+  "fulfillmentText": "Good job! You did big piss. Do you want to share more info about you toilet activity?",
+  "fulfillmentMessages": [{
+    "text": {
+      "text": ["Good job! You did big piss. Do you want to share more info about you toilet activity?"]
+    }
+  }],
+  "outputContexts": [{
+    "name": "projects/pysior/agent/sessions/5e75f2f9-844c-28e3-88cf-afa504f8a8de/contexts/toilet-followup",
+    "lifespanCount": 2,
+    "parameters": {
+      "amount": "big",
+      "toilet_activity.original": "pissed",
+      "toilet_activity": "piss",
+      "amount.original": "a lot"
+    }
+  }, {
+    "name": "projects/pysior/agent/sessions/5e75f2f9-844c-28e3-88cf-afa504f8a8de/contexts/toilet-followup-2",
+    "lifespanCount": 2,
+    "parameters": {
+      "amount": "big",
+      "toilet_activity.original": "pissed",
+      "toilet_activity": "piss",
+      "amount.original": "a lot"
+    }
+  }],
+"intent": {
+    "name": "projects/pysior/agent/intents/cb8fae01-09fd-416e-8976-1d444b125d38",
+    "displayName": "toilet"
+  },
+  "intentDetectionConfidence": 1.0,
+  "languageCode": "en"
+},
+"originalDetectIntentRequest": {
+  "payload": {
+  }
+},
+"session": "projects/pysior/agent/sessions/5e75f2f9-844c-28e3-88cf-afa504f8a8de"
+2019-01-20T17:19:32.258840+00:00 app[web.1]: }
+
+
+resp:
+
+{
+  "responseId": "8ea8fb2f-cd43-41a9-9df6-cbd3612ad1df",
+  "queryResult": {
+    "queryText": "a lot of",
+    "parameters": {
+      "toilet_activity": "piss",
+      "amount": "big"
+    },
+    "allRequiredParamsPresent": true,
+    "fulfillmentText": "Good job! You did big piss. Do you want to share more info about you toilet activity?",
+    "fulfillmentMessages": [
+      {
+        "text": {
+          "text": [
+            "Good job! You did big piss. Do you want to share more info about you toilet activity?"
+          ]
+        }
+      }
+    ],
+    "outputContexts": [
+      {
+        "name": "projects/pysior/agent/sessions/5e75f2f9-844c-28e3-88cf-afa504f8a8de/contexts/toilet-followup",
+        "lifespanCount": 2,
+        "parameters": {
+          "toilet_activity.original": "pissed",
+          "amount.original": "a lot",
+          "amount": "big",
+          "toilet_activity": "piss"
+        }
+      },
+      {
+        "name": "projects/pysior/agent/sessions/5e75f2f9-844c-28e3-88cf-afa504f8a8de/contexts/toilet-followup-2",
+        "lifespanCount": 2,
+        "parameters": {
+          "amount.original": "a lot",
+          "amount": "big",
+          "toilet_activity": "piss",
+          "toilet_activity.original": "pissed"
+        }
+      }
+    ],
+    "intent": {
+      "name": "projects/pysior/agent/intents/cb8fae01-09fd-416e-8976-1d444b125d38",
+      "displayName": "toilet"
+    },
+    "intentDetectionConfidence": 1,
+    "diagnosticInfo": {
+      "webhook_latency_ms": 1150
+    },
+    "languageCode": "en"
+  },
+  "webhookStatus": {
+    "code": 13,
+    "message": "Webhook call failed. Error: 500 "
+  }
+}

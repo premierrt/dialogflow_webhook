@@ -48,11 +48,9 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		//zwraca intentProcesor na podstawie konfiguracji - przeniesc do redis
 		Optional<IntenetProcessor> intenetProcessor= Optional.ofNullable( intentMapCache.get(intent));
 		
-		//tu zwroci null pointera jesli nie bedzie obslugi jakiegos intenta
-		//optional
+		//tu zwroci null pointera jesli nie bedzie obslugi jakiegos intenta --> dodaje optionala
 		//https://x-team.com/blog/using-optional-to-transform-your-java-code/
 		
-		//intenetProcessor.orElseThrow(exceptionSupplier)
 		return 	(intenetProcessor.orElse(new FallbackIntentProcessor())).processIntent(jsonObject); //tutaj powinien byc ze spring bean. z contextu wczytany?
 
 		

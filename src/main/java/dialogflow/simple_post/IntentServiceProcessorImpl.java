@@ -1,19 +1,32 @@
 package dialogflow.simple_post;
 
-import java.util.Map;
+import java.util.HashMap;
 
-import org.apache.catalina.connector.Response;
+import javax.annotation.Resource;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-
+import dialogflow.intentprocessing.IntenetProcessor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class IntentServiceProcessorImpl implements IntentServiceProcessor {
+
+	//do klasy abstrakcyjnej??
+	private HashMap<String,IntenetProcessor> intentMapCache;
+	
+
+	@Autowired
+	public IntentServiceProcessorImpl(HashMap<String, IntenetProcessor> intentMapCache) {
+		super();
+		this.intentMapCache = intentMapCache;
+	}
+
+
 
 	@Override
 	/**
@@ -23,19 +36,35 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 	 * https://www.toptal.com/java/spring-boot-rest-api-error-handling
 	 */
 	public FullfillmentResponseDTO processIntent(JSONObject jsonObject) throws IntentProcessingException {
-	
-		FullfillmentResponseDTO respone= new FullfillmentResponseDTO();
-		log.info(IntentServiceProcessorImpl.class + " ===================== "+jsonObject.toString() );
+		
+		String intent=new String();
 		try {
-			JSONObject queryResult = jsonObject.getJSONObject("queryResult");
-			
-			respone.setFulfillmentText( queryResult.getString("fulfillmentText").concat(" przerobiony w backendzie") );
-			
+			intent = getIntentFromJson(jsonObject);
 		} catch (JSONException e) {
 			throw new IntentProcessingException("Json się nie parsuje", e );
 		}
+		//zwraca intentProcesor na podstawie konfiguracji - przeniesc do redis
+		IntenetProcessor intenetProcessor= intentMapCache.get(intent);
+		return intenetProcessor.processIntent(jsonObject);
 		
-		return respone;
+		
+	}
+	
+
+	//do klasy abstrakcyjnej??
+	//zmieniam na public, zeby junit widzial. private nie widzi:
+	//ew. przeniesc do klasy z helperem
+	public String getIntentFromJson(JSONObject jsonObject) throws JSONException{
+		JSONObject intentJsonObject = jsonObject.getJSONObject("queryResult").getJSONObject("intent");
+		
+		return intentJsonObject.getString("name");
+		
+	}
+	
+	//do klasy abstrakcyjnej??
+	private IntenetProcessor getIntentProcessor(String intentName) throws IntentProcessingException{
+		return intentMapCache.entrySet().stream().filter(mapEntry -> intentName.equals(mapEntry.getKey())).findFirst().map(entry -> entry.getValue()).orElseThrow(() -> new IntentProcessingException("nie ma takiego intentu")); 
+		
 	}
 
 }

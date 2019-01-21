@@ -1,11 +1,18 @@
 package dialogflow;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
+import dialogflow.intentprocessing.ToiletActivityRaport;
+
 public class ToiletActivityRaportTest {
+	
+	ToiletActivityRaport toiletActivityRaport;
 
 	private static final String jsonObject ="{\n" + 
 			"\"responseId\": \"8ea8fb2f-cd43-41a9-9df6-cbd3612ad1df\",\n" + 
@@ -53,15 +60,20 @@ public class ToiletActivityRaportTest {
 			"  }\n" + 
 			"},\n" + 
 			"\"session\": \"projects/pysior/agent/sessions/5e75f2f9-844c-28e3-88cf-afa504f8a8de\"\n" + 
-			"2019-01-20T17:19:32.258840+00:00 app[web.1]: }";
+			" }";
+	
+	private static final String responseFullfilment="Good job! You did big piss. Do you want to share more info about you toilet activity? przerobiony w backendzie.zapialem "+"piss " + "big";
 	
 	@Before
 	public void setUp() throws Exception {
+		toiletActivityRaport = new ToiletActivityRaport();
+		
 	}
 
-//	@Test
-//	public void test() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void test() throws JSONException {
+		assertThat(toiletActivityRaport.processIntent(new JSONObject(jsonObject)).getFulfillmentText() , is(responseFullfilment));
+	
+	}
 
 }

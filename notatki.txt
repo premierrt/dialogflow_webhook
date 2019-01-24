@@ -286,3 +286,79 @@ resp:
     "message": "Webhook call failed. Error: 500 "
   }
 }
+
+
+----
+--przyklad komunikacji ze slack
+----
+
+{
+   "responseId": "c943d1e2-b190-4bcc-b8b3-66379e3faeb5",
+   "queryResult": {
+     "queryText": "much",
+     "parameters": {
+       "amount": "medium",
+       "toilet_activity": "piss"
+     },
+     "allRequiredParamsPresent": true,
+     "fulfillmentText": "Good job! You did medium piss. Do you want to share more info about you toilet activity?",
+     "fulfillmentMessages": [{
+       "text": {
+         "text": ["Good job! You did medium piss. Do you want to share more info about you toilet activity?"]
+       }
+     }],
+     "outputContexts": [{
+       "name": "projects/pysior/agent/sessions/babd77a7-789d-4d81-84ab-7e02308532fb/contexts/toilet-followup",
+       "lifespanCount": 2,
+       "parameters": {
+         "amount": "medium",
+         "toilet_activity.original": "pee",
+         "toilet_activity": "piss",
+         "amount.original": "much"
+       }
+     }, {
+       "name": "projects/pysior/agent/sessions/babd77a7-789d-4d81-84ab-7e02308532fb/contexts/toilet-followup-2",
+       "lifespanCount": 2,
+       "parameters": {
+         "amount": "medium",
+         "toilet_activity.original": "pee",
+         "toilet_activity": "piss",
+         "amount.original": "much"
+       }
+     }, {
+       "name": "projects/pysior/agent/sessions/babd77a7-789d-4d81-84ab-7e02308532fb/contexts/generic",
+       "lifespanCount": 4,
+       "parameters": {
+         "slack_user_id": "UF70LU93K",
+         "amount": "medium",
+         "slack_channel": "DF7QLR8JH",
+         "toilet_activity.original": "pee",
+         "toilet_activity": "piss",
+         "amount.original": "much"
+       }
+     }],
+     "intent": {
+       "name": "projects/pysior/agent/intents/cb8fae01-09fd-416e-8976-1d444b125d38",
+       "displayName": "toilet"
+     },
+     "intentDetectionConfidence": 1.0,
+     "languageCode": "en"
+   },
+   "originalDetectIntentRequest": {
+     "source": "slack_testbot",
+     "payload": {
+       "data": {
+         "client_msg_id": "e823fa5a-aa06-4644-8e6f-18a37c54dc78",
+         "event_ts": "1548341364.003500",
+         "channel": "DF7QLR8JH",
+         "text": "much",
+         "channel_type": "im",
+         "type": "message",
+         "user": "UF70LU93K",
+         "ts": "1548341364.003500"
+       },
+       "source": "slack_testbot"
+     }
+   },
+   "session": "projects/pysior/agent/sessions/babd77a7-789d-4d81-84ab-7e02308532fb"
+ }

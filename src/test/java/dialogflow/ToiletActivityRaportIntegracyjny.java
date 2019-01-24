@@ -7,13 +7,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import dialogflow.intentprocessing.ToiletActivityRaport;
 import dialogflow.notifcator.RESTNotificator;
 
-public class ToiletActivityRaportTest {
-	
+@SpringBootTest
+@RunWith(SpringRunner.class)
+public class ToiletActivityRaportIntegracyjny {
+
+	@Autowired
 	ToiletActivityRaport toiletActivityRaport;
 
 	private static final String jsonObject ="{\n" + 
@@ -68,7 +74,6 @@ public class ToiletActivityRaportTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		toiletActivityRaport = new ToiletActivityRaport(new RESTNotificator());
 		
 	}
 

@@ -1,5 +1,7 @@
 package dialogflow.intentprocessing;
 
+import java.util.HashMap;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +71,10 @@ public class ToiletActivityRaport implements IntenetProcessor {
 		log.info("+++++++++++++++zapisuje do bazy parametry id + "  +activity + " " + amount);
 		log.info("Wywolania asynchroniczne. "
 			      + Thread.currentThread().getName());
-		rESTNotificator.send();
+		HashMap<String, String> map = new HashMap<>();
+		map.put("activity", activity);
+		map.put("amount", amount);
+		rESTNotificator.send(map);
 		
 	}
 }

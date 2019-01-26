@@ -8,18 +8,19 @@ import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import dialogflow.intentprocessing.ToiletActivityRaport;
-import dialogflow.notifcator.Notifier;
 import dialogflow.notifcator.RESTNotificator;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ToiletActivityRaportTest {
-	
+@SpringBootTest
+@RunWith(SpringRunner.class)
+public class ToiletActivityRaportIntegracyjny {
+
+	@Autowired
+	ToiletActivityRaport toiletActivityRaport;
 
 	private static final String jsonObject ="{\n" + 
 			"\"responseId\": \"8ea8fb2f-cd43-41a9-9df6-cbd3612ad1df\",\n" + 
@@ -70,19 +71,11 @@ public class ToiletActivityRaportTest {
 			" }";
 	
 	private static final String responseFullfilment="Good job! You did big piss. Do you want to share more info about you toilet activity? przerobiony w backendzie.zapialem "+"piss " + "big";
-
-	@Mock
-	private Notifier notifierMock;
 	
-	@InjectMocks 
-	private ToiletActivityRaport toiletActivityRaport;
-
-//można zmiast intectMock zrobić konstrukotorem i wrzuic mocka - tez dziala	
-//	@Before
-//	public void setUp() {
-//		toiletActivityRaport = new ToiletActivityRaport(notifierMock);
-//		
-//	}
+	@Before
+	public void setUp() throws Exception {
+		
+	}
 
 	@Test
 	public void test() throws JSONException {

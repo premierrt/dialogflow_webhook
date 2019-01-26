@@ -76,5 +76,13 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		return intentMapCache.entrySet().stream().filter(mapEntry -> intentName.equals(mapEntry.getKey())).findFirst().map(entry -> entry.getValue()).orElseThrow(() -> new IntentProcessingException("nie ma takiego intentu")); 
 		
 	}
+	
+
+	
+	//https://stackoverflow.com/questions/14162788/combination-of-extend-abstract-class-and-implement-interface
+	//przeniesc impelentacje do klasy abstrkcyjne
+	private void chooseNotication(){
+		
+	}
 
 }

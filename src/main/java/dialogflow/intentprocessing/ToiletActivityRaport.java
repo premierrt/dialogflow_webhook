@@ -1,9 +1,14 @@
 package dialogflow.intentprocessing;
 
+import java.util.HashMap;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import dialogflow.notifcator.Notifier;
+import dialogflow.notifcator.RESTNotificator;
 import dialogflow.simple_post.FullfillmentResponseDTO;
 import dialogflow.simple_post.IntentServiceProcessorImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +17,18 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class ToiletActivityRaport implements IntenetProcessor {
+	
+	//do zmiany do konstuktora
+	
+	
+	Notifier rESTNotificator;
+
+	@Autowired
+	public ToiletActivityRaport(Notifier rESTNotificator) {
+		super();
+		this.rESTNotificator = rESTNotificator;
+	}
+
 
 	@Override
 	public FullfillmentResponseDTO processIntent(JSONObject jsonObject) {
@@ -52,6 +69,13 @@ public class ToiletActivityRaport implements IntenetProcessor {
 	
 	public void sendNotification(String activity,  String amount){
 		log.info("+++++++++++++++zapisuje do bazy parametry id + "  +activity + " " + amount);
+		log.info("Wywolania asynchroniczne. "
+			      + Thread.currentThread().getName());
+		HashMap<String, String> map = new HashMap<>();
+		map.put("activity", activity);
+		map.put("amount", amount);
+		rESTNotificator.send(map);
+		
 	}
 }
 

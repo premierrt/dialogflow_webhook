@@ -77,11 +77,7 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		
 	}
 	
-	//https://stackoverflow.com/questions/14162788/combination-of-extend-abstract-class-and-implement-interface
-	//przeniesc impelentacje do klasy abstrkcyjne
-	private void chooseNotication(){
-		
-	}
+
 	
 	//https://stackoverflow.com/questions/14162788/combination-of-extend-abstract-class-and-implement-interface
 	//przeniesc impelentacje do klasy abstrkcyjne

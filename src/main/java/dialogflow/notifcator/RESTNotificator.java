@@ -1,6 +1,5 @@
 package dialogflow.notifcator;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -31,19 +30,4 @@ public class RESTNotificator implements Notifier {
 		log.info("============ RestTemplate ======= "+httpEntity.toString());
 		
 	}
-=======
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Component;
-
-@Component
-@ConditionalOnProperty(name="notification.type", havingValue="REST")
-public class RESTNotificator implements Notifier {
-
-	@Override
-	public void send() {
-		// TODO Auto-generated method stub
-
-	}
-
->>>>>>> branch 'notificator' of https://github.com/premierrt/dialogflow_webhook.git
 }

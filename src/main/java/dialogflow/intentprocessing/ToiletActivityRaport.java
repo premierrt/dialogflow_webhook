@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import dialogflow.notifcator.Notifier;
@@ -24,7 +25,7 @@ public class ToiletActivityRaport implements IntenetProcessor {
 	Notifier rESTNotificator;
 
 	@Autowired
-	public ToiletActivityRaport(Notifier rESTNotificator) {
+	public ToiletActivityRaport(@Qualifier("rESTNotificator") Notifier rESTNotificator) {
 		super();
 		this.rESTNotificator = rESTNotificator;
 	}

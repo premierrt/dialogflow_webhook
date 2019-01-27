@@ -362,3 +362,40 @@ resp:
    },
    "session": "projects/pysior/agent/sessions/babd77a7-789d-4d81-84ab-7e02308532fb"
  }
+
+ 
+ 
+ ---check history
+ {
+  "responseId": "ac1fd1f4-ac13-4399-871e-b061dd1c2e02",
+  "queryResult": {
+    "queryText": "3 days",
+    "parameters": {
+      "duration": {
+        "amount": 3,
+        "unit": "day"
+      }
+    },
+    "allRequiredParamsPresent": true,
+    "fulfillmentText": "Since 3 day you : 1 poo, 2 piss < Tu będzie odpowiedz z backendu. > Do you want to do anything else?",
+    "fulfillmentMessages": [
+      {
+        "text": {
+          "text": [
+            "Since 3 day you : 1 poo, 2 piss < Tu będzie odpowiedz z backendu. > Do you want to do anything else?"
+          ]
+        }
+      }
+    ],
+    "intent": {
+      "name": "projects/pysior/agent/intents/1890557d-b69b-40e6-bd21-f32982175c55",
+      "displayName": "check_history"
+    },
+    "intentDetectionConfidence": 1,
+    "languageCode": "en"
+  },
+  "originalDetectIntentRequest": {
+    "payload": {}
+  },
+  "session": "projects/pysior/agent/sessions/a4dd63e1-caec-f42a-3a5c-2e99f3e3632a"
+}

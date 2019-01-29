@@ -7,7 +7,6 @@ import org.springframework.scheduling.annotation.Async;
 
 public interface Connector {
 
-	void send(HashMap<?, ?> parameters);
 
 	List<ActivityEntry> getHistory();
 

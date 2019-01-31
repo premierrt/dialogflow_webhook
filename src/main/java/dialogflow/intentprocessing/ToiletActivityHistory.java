@@ -14,10 +14,10 @@ import dialogflow.simple_post.FullfillmentResponseDTO;
 
 
 @Component("toiletActivityHistory")
-public class ToiletActivityHistory extends RestConnector implements IntenetProcessor {
+public class ToiletActivityHistory implements IntenetProcessor {
 //
-//	@Autowired
-//	Connector restConnector;
+	@Autowired
+	Connector connector;
 	
 	@Override
 	public FullfillmentResponseDTO processIntent(JSONObject jsonObject) {
@@ -28,7 +28,7 @@ public class ToiletActivityHistory extends RestConnector implements IntenetProce
 		// TODO Auto-generated method stub
 //			//todo znajdz entity z czasem do selecta. dopisac selecta po czasie.
 		//	List <ActivityEntry> lista=  restConnector.getHistory();
-		List <ActivityEntry> lista=super.getHistory();
+		List <ActivityEntry> lista=connector.getHistory();
 			respone.setFulfillmentText(lista.toString());
 			
 			return respone;

@@ -1,10 +1,25 @@
 package dialogflow;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import dialogflow.intentprocessing.ToiletActivityHistory;
+import dialogflow.notifcator.ActivityEntry;
+import dialogflow.notifcator.Connector;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ToiletActivityHistoryTest {
 
 	
@@ -43,14 +58,26 @@ public class ToiletActivityHistoryTest {
 			"}";
 	
 	
+	
+	@Mock
+	private Connector connectorMock;
+	
+	@Mock
+	private List<ActivityEntry> mockReturnList;
+	
+	@InjectMocks
 	private ToiletActivityHistory toiletActivityHistory;
+
 	
 	@Before
 	public void setUp() throws Exception {
 	}
 
 	@Test
-	public void test() {
+	public void test() throws JSONException {
+		when(connectorMock.getHistory()).thenReturn(mockReturnList);
+		assertThat(toiletActivityHistory.processIntent(new JSONObject(jsonString.toString())).getFulfillmentText(), is(mockReturnList.toString()));
+		
 //
 		}
 

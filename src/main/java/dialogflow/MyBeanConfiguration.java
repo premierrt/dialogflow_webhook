@@ -36,6 +36,8 @@ public class MyBeanConfiguration {
 		map.put("projects/jokes-df111/agent/intents/19455d90-8a5b-40cb-8403-69ee0c1e143c", toiletIntentProcessor);
 		map.put("projects/pysior/agent/intents/cb8fae01-09fd-416e-8976-1d444b125d38", toiletActivityRaport);
 		map.put("projects/pysior/agent/intents/1890557d-b69b-40e6-bd21-f32982175c55", toiletActivityHistory);
+		map.put("projects/pysior-37fed/agent/intents/1890557d-b69b-40e6-bd21-f32982175c55",toiletActivityHistory);
+		map.put("projects/pysior-37fed/agent/intents/cb8fae01-09fd-416e-8976-1d444b125d38", toiletActivityRaport);	
 		return map;
 	}
 }

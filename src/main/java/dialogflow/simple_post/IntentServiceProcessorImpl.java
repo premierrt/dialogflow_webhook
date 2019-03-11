@@ -95,6 +95,6 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 	private void sendJson(String  jsonObject) {
 		RestTemplate rt = new RestTemplate();
 		log.info("----------notyfikacja do rest mongo-----------");
-		rt.postForObject(mongoUrl, jsonObject, String.class);
+		rt.postForLocation(mongoUrl, jsonObject);
 	}
 }

@@ -26,6 +26,9 @@ public class MyBeanConfiguration {
 	@Qualifier("toiletActivityHistory")
 	IntenetProcessor toiletActivityHistory;
 	
+	@Autowired
+	@Qualifier("wakeUpIntent")
+	IntenetProcessor wakeUpIntent;
 	
 	
 	//nazwa bean to będzie intentMapCache - mozna to pozniej autowired
@@ -38,6 +41,7 @@ public class MyBeanConfiguration {
 		map.put("projects/pysior/agent/intents/1890557d-b69b-40e6-bd21-f32982175c55", toiletActivityHistory);
 		map.put("projects/pysior-37fed/agent/intents/1890557d-b69b-40e6-bd21-f32982175c55",toiletActivityHistory);
 		map.put("projects/pysior-37fed/agent/intents/cb8fae01-09fd-416e-8976-1d444b125d38", toiletActivityRaport);	
+		map.put("projects/pysior-37fed/agent/intents/3ca05da5-e4c5-4892-a14e-66047f915189", wakeUpIntent);
 		return map;
 	}
 }

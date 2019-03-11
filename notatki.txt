@@ -399,3 +399,10 @@ resp:
   },
   "session": "projects/pysior/agent/sessions/a4dd63e1-caec-f42a-3a5c-2e99f3e3632a"
 }
+
+
+
+-- debug eclipse
+https://stackoverflow.com/questions/24113939/how-to-debug-spring-boot-application-with-eclipse
+
+--

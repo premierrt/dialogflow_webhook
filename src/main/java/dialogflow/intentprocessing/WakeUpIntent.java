@@ -32,7 +32,7 @@ public class WakeUpIntent implements IntenetProcessor {
 	private void wakeUpOtherServices() {
 		log.info("calling crud async...............");
 		RestTemplate rt = new RestTemplate(); 
-		rt.getForObject(initUrl, null);
+		rt.getForObject(initUrl, String.class);
 	}
 	
 }

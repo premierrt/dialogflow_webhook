@@ -16,7 +16,7 @@ public class WakeUpIntent implements IntenetProcessor {
 	
 
 	
-	@Value("{rest_crud_init_url}")
+	@Value("${rest_crud_init_url}")
 	private String initUrl;
 
 	@Override

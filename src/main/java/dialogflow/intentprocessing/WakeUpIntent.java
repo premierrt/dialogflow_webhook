@@ -10,9 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import dialogflow.simple_post.FullfillmentResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 
-@Component
+@Component("wakeUpIntent")
 @Slf4j
-
 public class WakeUpIntent implements IntenetProcessor {
 	
 	@Autowired
@@ -32,7 +31,7 @@ public class WakeUpIntent implements IntenetProcessor {
 
 	@Async
 	private void wakeUpOtherServices() {
-		RestTemplate rt = new RestTemplate();
+		log.info("calling crud async...............");
 		rt.getForObject(initUrl, null);
 	}
 	

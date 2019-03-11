@@ -101,6 +101,7 @@ public class IntentServiceTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		
 		intentServiceProcessorImpl = new IntentServiceProcessorImpl(intentMapCacheMock);
 		 json = new JSONObject(jsonString.toString());
 	}
@@ -111,6 +112,8 @@ public class IntentServiceTest {
 		//mocikto
 		//http://www.vogella.com/tutorials/Mockito/article.html
 			when (intentMapCacheMock.get(anyString())).thenReturn(new ToiletIntentProcessor());	
+			doNothing().when(restMongoNotificatorMock).sendJson(anyString());
+
 			assertThat(intentServiceProcessorImpl.processIntent(json).getFulfillmentText(), is(responseText));
 	
 	}
@@ -122,6 +125,8 @@ public class IntentServiceTest {
 	
 	@Test
 	public void testNoIntent() throws IntentProcessingException{
+		doNothing().when(restMongoNotificatorMock).sendJson(anyString());
+
 		assertThat(intentServiceProcessorImpl.processIntent(json).getFulfillmentText(), is(intentFallbackText));
 
 	}

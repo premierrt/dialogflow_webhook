@@ -24,13 +24,14 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 	private HashMap<String,IntenetProcessor> intentMapCache;
 	
 	
-	@Autowired
+	
 	private RestMongoNotificator restMongoNotificator;
 
 	@Autowired
-	public IntentServiceProcessorImpl(HashMap<String, IntenetProcessor> intentMapCache) {
+	public IntentServiceProcessorImpl(HashMap<String, IntenetProcessor> intentMapCache, RestMongoNotificator restMongoNotificator) {
 		super();
 		this.intentMapCache = intentMapCache;
+		this.restMongoNotificator= restMongoNotificator;
 	}
 
 

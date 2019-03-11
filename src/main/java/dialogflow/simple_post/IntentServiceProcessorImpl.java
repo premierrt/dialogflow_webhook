@@ -3,12 +3,13 @@ package dialogflow.simple_post;
 import java.util.HashMap;
 import java.util.Optional;
 
-import javax.annotation.Resource;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import dialogflow.intentprocessing.FallbackIntentProcessor;
 import dialogflow.intentprocessing.IntenetProcessor;
@@ -21,6 +22,8 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 	//do klasy abstrakcyjnej??
 	private HashMap<String,IntenetProcessor> intentMapCache;
 	
+	@Value("${mongo_url}")
+	private String mongoUrl;
 
 	@Autowired
 	public IntentServiceProcessorImpl(HashMap<String, IntenetProcessor> intentMapCache) {
@@ -50,6 +53,9 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		
 		//tu zwroci null pointera jesli nie bedzie obslugi jakiegos intenta --> dodaje optionala
 		//https://x-team.com/blog/using-optional-to-transform-your-java-code/
+		
+		//pisanie do mongo - do przerobienia
+		sendJson(jsonObject.toString());
 		
 		return 	(intenetProcessor.orElse(new FallbackIntentProcessor())).processIntent(jsonObject); //tutaj powinien byc ze spring bean. z contextu wczytany?
 
@@ -85,4 +91,9 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		
 	}
 
+	@Async
+	private void sendJson(String  jsonObject) {
+		RestTemplate rt = new RestTemplate();
+		rt.postForObject(mongoUrl, jsonObject, null);
+	}
 }

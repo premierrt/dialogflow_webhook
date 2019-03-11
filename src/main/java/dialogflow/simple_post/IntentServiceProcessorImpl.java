@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import dialogflow.intentprocessing.FallbackIntentProcessor;
 import dialogflow.intentprocessing.IntenetProcessor;
+import dialogflow.notifcator.RestMongoNotificator;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -22,8 +23,9 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 	//do klasy abstrakcyjnej??
 	private HashMap<String,IntenetProcessor> intentMapCache;
 	
-	@Value("${mongo_url}")
-	private String mongoUrl;
+	
+	@Autowired
+	private RestMongoNotificator restMongoNotificator;
 
 	@Autowired
 	public IntentServiceProcessorImpl(HashMap<String, IntenetProcessor> intentMapCache) {
@@ -55,7 +57,7 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		//https://x-team.com/blog/using-optional-to-transform-your-java-code/
 		
 		//pisanie do mongo - do przerobienia
-		sendJson(jsonObject.toString());
+		restMongoNotificator.sendJson(jsonObject.toString());
 		
 		return 	(intenetProcessor.orElse(new FallbackIntentProcessor())).processIntent(jsonObject); //tutaj powinien byc ze spring bean. z contextu wczytany?
 
@@ -91,10 +93,5 @@ public class IntentServiceProcessorImpl implements IntentServiceProcessor {
 		
 	}
 
-	@Async
-	private void sendJson(String  jsonObject) {
-		RestTemplate rt = new RestTemplate();
-		log.info("----------notyfikacja do rest mongo-----------");
-		rt.postForLocation(mongoUrl, jsonObject);
-	}
+
 }

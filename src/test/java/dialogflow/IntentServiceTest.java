@@ -18,6 +18,7 @@ import static org.mockito.Mockito.*;
 
 import dialogflow.intentprocessing.IntenetProcessor;
 import dialogflow.intentprocessing.ToiletIntentProcessor;
+import dialogflow.notifcator.RestMongoNotificator;
 import dialogflow.simple_post.IntentProcessingException;
 import dialogflow.simple_post.IntentServiceProcessorImpl;
 
@@ -89,6 +90,10 @@ public class IntentServiceTest {
 	@Mock
 	private HashMap<String,IntenetProcessor> intentMapCacheMock;
   
+	
+	@Mock
+	private RestMongoNotificator restMongoNotificatorMock;
+	
 	@InjectMocks
 	private IntentServiceProcessorImpl intentServiceProcessorImpl;
 

@@ -102,7 +102,7 @@ public class IntentServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		intentServiceProcessorImpl = new IntentServiceProcessorImpl(intentMapCacheMock);
+	//	intentServiceProcessorImpl = new IntentServiceProcessorImpl(intentMapCacheMock);
 		 json = new JSONObject(jsonString.toString());
 	}
 	

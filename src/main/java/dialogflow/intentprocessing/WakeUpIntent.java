@@ -14,8 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WakeUpIntent implements IntenetProcessor {
 	
-	@Autowired
-	private RestTemplate rt;
+
 	
 	@Value("{rest_crud_init_url}")
 	private String initUrl;
@@ -32,6 +31,7 @@ public class WakeUpIntent implements IntenetProcessor {
 	@Async
 	private void wakeUpOtherServices() {
 		log.info("calling crud async...............");
+		RestTemplate rt = new RestTemplate(); 
 		rt.getForObject(initUrl, null);
 	}
 	
